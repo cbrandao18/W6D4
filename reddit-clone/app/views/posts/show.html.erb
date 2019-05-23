@@ -1,0 +1,30 @@
+<h2>Post Show Page</h2>
+<p>
+<%= @post.title %>
+</p>
+<p>
+<%= @post.url if @post.url %>
+</p>
+<p>
+<%= @post.content if @post.content %>
+</p>
+
+<ul>
+    <% @post.subs.each do |sub| %>
+        <li>
+            <a href="<%= sub_url(sub.id) %>">
+                <%= sub.title %>
+            </a>
+            
+        </li>
+    <% end %>
+</ul>
+
+<a href="<%= new_post_comment_url(@post.id) %>">Comment on this post</a>
+<br>
+<h3>Top-level comments for this post:</h3>
+<% @post.comments.each do |comment| %>
+    <a href="<%= comment_url(comment.id) %>">
+        <%= comment.content %>
+    </a>
+<% end %>
